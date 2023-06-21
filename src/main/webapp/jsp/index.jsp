@@ -14,22 +14,17 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<title>Tutory</title>
-	<!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-	<!-- Font Awesome icons (free version)-->
 	<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
 			crossorigin="anonymous"></script>
-	<!-- Google fonts-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 		  rel="stylesheet" type="text/css" />
 	<link
 			href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 			rel="stylesheet" type="text/css" />
-	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="../css/index-styles.css" rel="stylesheet" />
 </head>
 <body id="page-top">
-<!-- Navigation-->
 <nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
@@ -45,9 +40,7 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
-				<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Quiz</a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded" href="#stanowisko"><%= session.getAttribute("name2")%></a></li>
 				<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="logout">Logout</a></li>
 				<li class="nav-item mx-0 mx-lg-1 bg-danger"><a
@@ -60,7 +53,7 @@
 <header class="masthead bg-primary text-white text-center">
 	<div class="container d-flex align-items-center flex-column">
 
-		<h1 class="masthead-subheading text-uppercase mb-0">Welcome To Tutory</h1>
+		<h1 class="masthead-subheading text-uppercase mb-0" style="font-size: 80px">Welcome!</h1>
 		<div class="divider-custom divider-light">
 			<div class="divider-custom-line"></div>
 			<div class="divider-custom-icon">
@@ -74,12 +67,19 @@
 
 <section class="masthead bg-white text-darkblue text-center" id="portfolio">
 	<div class="container d-flex align-items-center flex-column"></div>
-	<h1 class="masthead-heading text-uppercase mb-0">Course List</h1>
+	<h1 class="nav-item mx-0 mx-lg-1"><a
+			class="nav-link py-3 px-0 px-lg-3 rounded">Course List</a></h1>
 	<br>
 	<form method="post" action="">
-		<input type="search" name="siteUrl" id="siteUrl" placeholder="Search for Course" size="100">
+		<input style="border: 1px solid grey;
+			   border-radius: 5px;
+			   height: 20px;
+			   width: 50%;
+			   padding: 2px 23px 2px 30px;
+			   outline: 0;
+			   background-color: #f5f5f5;"type="search" name="siteUrl" id="siteUrl" placeholder="Search for Course" size="100">
 		<br>
-		<button class="button-27">Find Course</button>
+		<button class="button-27" >Find Course</button>
 		<br>
 	</form>
 	<br>

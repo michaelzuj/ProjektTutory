@@ -21,6 +21,7 @@ public class login extends HttpServlet {
     {
     String email = request.getParameter("username");
     String haslo = request.getParameter("password");
+
     HttpSession session = request.getSession();
         RequestDispatcher dispatcher = null;
 
@@ -36,6 +37,7 @@ public class login extends HttpServlet {
             ResultSet rs= pst.executeQuery();
             if(rs.next()){
                 session.setAttribute("name", rs.getString("email"));
+                session.setAttribute("name2", rs.getString("stanowisko"));
                 dispatcher = request.getRequestDispatcher("jsp/index.jsp");
 
             }else {
