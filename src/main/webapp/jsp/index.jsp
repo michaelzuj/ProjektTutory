@@ -72,7 +72,7 @@
 	<br>
 	<form method="post" action="">
 		<input style="border: 1px solid grey;
-			   border-radius: 5px;
+			   border-radius: 10px;
 			   height: 20px;
 			   width: 50%;
 			   padding: 2px 23px 2px 30px;

@@ -1,6 +1,9 @@
 package com.example.Tutory.student;
 
+import com.example.Tutory.course.Course;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 
 @Entity
@@ -20,17 +23,37 @@ public class Student {
     private String haslo;
 
     private String stanowisko;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "course_student",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "courseId"))
+    private List<Course> courses;
 
     public Student() {
+
     }
 
-    public Student(Long id, String imie, String nazwisko, String email, String haslo, String stanowisko) {
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+
+    public Student(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public Student(Long id, String imie, String nazwisko, String email, String haslo, String stanowisko, List<Course> courses) {
         this.id = id;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.email = email;
         this.haslo = haslo;
         this.stanowisko = stanowisko;
+        this.courses = courses;
     }
 
     public Student(String imie, String nazwisko, String email, String haslo, String stanowisko) {
@@ -73,6 +96,11 @@ public class Student {
         this.email = email;
     }
 
+
+    public List<Course> getCurse() {
+        return courses;
+    }
+
     public String getHaslo() {
         return haslo;
     }
@@ -97,6 +125,7 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", haslo=" + haslo +
                 ", stanowisko=" + stanowisko +
+                ", Kursy"+courses+
                 '}';
     }
 }

@@ -21,7 +21,10 @@ public class StudentConfig {
                     "Kowalski@gmail.com",
                     "password",
 
-                    "Student");
+                    "Student"
+
+                    );
+
             Student nowy2 = new Student(
 
                     "Marek",
@@ -29,7 +32,10 @@ public class StudentConfig {
                     "Nowak@gmail.com",
                     "hasloaa",
 
-                    "Teacher");
+                    "Teacher"
+
+
+                    );
 
 
 

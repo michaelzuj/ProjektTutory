@@ -1,5 +1,8 @@
 package com.example.Tutory.course;
 
+import com.example.Tutory.student.Student;
+import com.example.Tutory.student.StudentRepository;
+import jakarta.persistence.Id;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,12 +13,15 @@ import java.util.Map;
 @Service
 public class CourseService {
 
+    private StudentRepository studentRepository;
+    private CourseRepository courseRepository;
     private Map<Integer, Course> courseMap;
     private int nextCourseId;
 
-    public CourseService() {
+    public CourseService(StudentRepository studentRepository) {
         courseMap = new HashMap<>();
         nextCourseId = 1;
+        this.studentRepository = studentRepository;
     }
 
     public List<Course> getAllCourses() {
@@ -24,6 +30,19 @@ public class CourseService {
 
     public Course getCourseById(int courseId) {
         return courseMap.get(courseId);
+    }
+
+    public void addStudentToCourse(Long student_id, Long course_id){
+        Student student = studentRepository.findById(student_id).orElseThrow(() ->
+                new IllegalStateException("Podane id: "+ student_id+ " nie istnieje."));
+        Course course = courseRepository.findById(course_id).orElseThrow(() ->
+                new IllegalStateException("Podane id: "+ course_id+ " nie istnieje."));
+
+
+
+        course.getCourseStudents().add(student);
+        courseRepository.save(course);
+
     }
 
     public Course addCourse(Course course) {
