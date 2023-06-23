@@ -35,7 +35,7 @@ public class CourseController extends HttpServlet {
         courseService.addCourse(course);
     }
 
-    @DeleteMapping(path = "{studentId}")
+    @DeleteMapping(path = "{courseId}")
     public void deleteCourse(@PathVariable("courseId") Long courseId) {
         courseService.deleteCourse(courseId);
     }
