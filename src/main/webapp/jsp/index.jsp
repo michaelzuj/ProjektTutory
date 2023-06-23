@@ -1,3 +1,9 @@
+<%@ page import="java.beans.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+
+<%@ page language="java" import="java.util.*"%>
 <%
 	if (session.getAttribute("name")==null){
 		response.sendRedirect("login.jsp");
@@ -23,6 +29,14 @@
 			href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 			rel="stylesheet" type="text/css" />
 	<link href="../css/index-styles.css" rel="stylesheet" />
+
+	<script type="text/javascript">
+		function change()
+		{
+			var answer = document.getElementById('selc').value;
+			document.getElementById('textvalue').value=answer;
+		}
+	</script>
 </head>
 <body id="page-top">
 <nav
@@ -65,25 +79,31 @@
 	</div>
 </header>
 
+
 <section class="masthead bg-white text-darkblue text-center" id="portfolio">
-	<div class="container d-flex align-items-center flex-column"></div>
-	<h1 class="nav-item mx-0 mx-lg-1"><a
-			class="nav-link py-3 px-0 px-lg-3 rounded">Course List</a></h1>
-	<br>
-	<form method="post" action="">
-		<input style="border: 1px solid grey;
-			   border-radius: 10px;
-			   height: 20px;
-			   width: 50%;
-			   padding: 2px 23px 2px 30px;
-			   outline: 0;
-			   background-color: #f5f5f5;"type="search" name="siteUrl" id="siteUrl" placeholder="Search for Course" size="100">
-		<br>
-		<button class="button-27" >Find Course</button>
-		<br>
-	</form>
-	<br>
-	<h2 class="masthead-subheading text-uppercase mb-0">List of Courses:</h2>
+
+	<h1 class="masthead-subheading text-uppercase mb-0">All courses available:</h1>
+	<div >
+		<ul class="navbar-nav ms-auto">
+			<li class="nav-item mx-0 mx-lg-1">
+				<select name="ActionSelect" onChange="change()" id="selc" style="font-size: 25px">
+				<%Iterator itr;%>
+				<% List data= (List)request.getAttribute("data");
+					for (itr=data.iterator(); itr.hasNext(); )
+					{
+						String value=(String)itr.next();
+				%>
+				<option value=<%=value%>><%=value%></option>
+				<%}%>
+			</select></li>
+
+			<br>
+			<button class="button-27">Add Course</button>
+			<br>
+		</ul>
+	</div>
+
+
 	<div class="container mt-5">
 		<div class="row" class="masthead-subheading">
 			<div class="col-md-12">

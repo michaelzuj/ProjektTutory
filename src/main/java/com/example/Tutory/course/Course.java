@@ -31,14 +31,14 @@ public class Course {
         this.courseId = courseId;
         this.courseName = courseName;
         this.instructor = instructor;
-        this.numberOfStudents = 0;
+        this.numberOfStudents = numberOfStudents;
         this.students = students;
     }
     public Course(Long courseId, String courseName, String instructor, int numberOfStudents) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.instructor = instructor;
-        this.numberOfStudents = 0;
+        this.numberOfStudents = numberOfStudents;
     }
 
     public Course() {
