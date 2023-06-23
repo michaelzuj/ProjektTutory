@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Course {
     @Id
     private String courseName;
-    private int courseId;
+    private long courseId;
     private String instructor;
     private int numberOfStudents;
 
@@ -26,7 +26,7 @@ public class Course {
         return courseName;
     }
 
-    public int getCourseId() {
+    public long getCourseId() {
         return courseId;
     }
 
@@ -55,6 +55,6 @@ public class Course {
         System.out.println("Number of Students: " + numberOfStudents);
     }
 
-    public void setCourseId(int nextCourseId) {
+    public void setCourseId(long nextCourseId) {
     }
 }
