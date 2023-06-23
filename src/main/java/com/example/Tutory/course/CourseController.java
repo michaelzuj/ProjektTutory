@@ -5,44 +5,39 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.Tutory.student.Student;
+import com.example.Tutory.student.StudentService;
+
+import jakarta.servlet.http.HttpServlet;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
-public class CourseController {
+public class CourseController extends HttpServlet {
 
     @Autowired
-    private CourseService courseService;
+    private final CourseService courseService;
+    private static final long serialVerionUID = 1L;
+
+    @Autowired
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
     @GetMapping
-    public ResponseEntity<List<Course>> getAllCourses() {
-        List<Course> courses = courseService.getAllCourses();
-        return new ResponseEntity<>(courses, HttpStatus.OK);
+    public List<Course> getCourses() {
+        return courseService.getCourses();
     }
 
-    @GetMapping("/{courseId}")
-    public ResponseEntity<Course> getCourseById(@PathVariable int courseId) {
-        Course course = courseService.getCourseById(courseId);
-        if (course != null) {
-            return new ResponseEntity<>(course, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @PostMapping(consumes = "application/json;charset=UTF-8")
+    public void registerNewStudent(@RequestBody Course course) {
+        courseService.addCourse(course);
     }
 
-    @PostMapping
-    public ResponseEntity<Course> addCourse(@RequestBody Course course) {
-        Course addedCourse = courseService.addCourse(course);
-        return new ResponseEntity<>(addedCourse, HttpStatus.CREATED);
+    @DeleteMapping(path = "{courseId}")
+    public void deleteCourse(@PathVariable("courseId") Long courseId) {
+        courseService.deleteCourse(courseId);
     }
 
-    @DeleteMapping("/{courseId}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable int courseId) {
-        boolean isDeleted = courseService.deleteCourse(courseId);
-        if (isDeleted) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 }
