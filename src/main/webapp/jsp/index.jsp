@@ -1,4 +1,3 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page import="java.beans.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Connection" %>
@@ -87,8 +86,6 @@
 	<div >
 		<ul class="navbar-nav ms-auto">
 			<li class="nav-item mx-0 mx-lg-1">
-				<form action="/przetworzFormularz" method="post">
-
 				<select name="ActionSelect" onChange="change()" id="selc" style="font-size: 25px">
 				<%Iterator itr;%>
 				<% List data= (List)request.getAttribute("data");
@@ -98,36 +95,32 @@
 				%>
 				<option value=<%=value%>><%=value%></option>
 				<%}%>
-			</select>
-					<input type="hidden" name="textvalue" id="textvalue" >
-					<input type="hidden" name="idStudenta2" id="idStudenta2" value="<%= session.getAttribute("idStudenta2") %>">
-					<button class="button-27" type="submit">Add</button>
-
-
-			</form>
-			</li>
-
-
+			</select></li>
 
 			<br>
-
-
-			<li class="nav-item mx-0 mx-lg-1">
+			<button class="button-27">Add Course</button>
 			<br>
 		</ul>
 	</div>
 
 
-<%--	<div class="container mt-5">--%>
-<%--		<div class="row" class="masthead-subheading">--%>
-<%--			<div class="col-md-12">--%>
-<%--				<ul class="navbar-nav ms-auto">--%>
-<%--					<li class="nav-item mx-0 mx-lg-1"><a--%>
-<%--							class="nav-link py-3 px-0 px-lg-3 rounded" href="/przetworzFormularz">Go to my courses</a></li>--%>
-<%--				</ul>--%>
-<%--			</div>--%>
-<%--		</div>--%>
-<%--	</div>--%>
+	<div class="container mt-5">
+		<div class="row" class="masthead-subheading">
+			<div class="col-md-12">
+				<ul class="list-group" style="list-style-type:none; padding:0; margin:0;">
+					<li class="list-group-item">
+						<a href="#">Course 1</a>
+					</li>
+					<li class="list-group-item">
+						<a href="#">Course 2</a>
+					</li>
+					<li class="list-group-item">
+						<a href="#">Course 3</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </section>
 
 <script

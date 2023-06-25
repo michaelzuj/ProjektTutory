@@ -2,95 +2,71 @@ package com.example.Tutory.course;
 
 import com.example.Tutory.student.Student;
 import com.example.Tutory.student.StudentRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.Id;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class CourseService {
 
-    @Autowired
     private StudentRepository studentRepository;
-    private final CourseRepository courseRepository;
+    private CourseRepository courseRepository;
+    private Map<Integer, Course> courseMap;
+    private int nextCourseId;
 
-    private Long nextCourseId;
-
-    @Autowired
-    public CourseService(CourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
+    public CourseService(StudentRepository studentRepository) {
+        courseMap = new HashMap<>();
+        nextCourseId = 1;
+        this.studentRepository = studentRepository;
     }
 
-
-
-    public List<Course> getAllCourses() { return courseRepository.findAll ();
+    public List<Course> getAllCourses() {
+        return new ArrayList<>(courseMap.values());
     }
 
+    public Course getCourseById(int courseId) {
+        return courseMap.get(courseId);
+    }
 
-
-    public void addStudentToCourse(Long course_id , Long student_id){
-
+    public void addStudentToCourse(Long student_id, Long course_id){
         Student student = studentRepository.findById(student_id).orElseThrow(() ->
-                new EntityNotFoundException("Podane id: "+ student_id+ " nie istnieje."));
+                new IllegalStateException("Podane id: "+ student_id+ " nie istnieje."));
         Course course = courseRepository.findById(course_id).orElseThrow(() ->
-                new EntityNotFoundException("Podane id: "+ course_id+ " nie istnieje."));
+                new IllegalStateException("Podane id: "+ course_id+ " nie istnieje."));
 
 
 
         course.getCourseStudents().add(student);
-        student.getCourses().add(course);
         courseRepository.save(course);
 
 
     }
 
-    public void addCourse(Course course) {
-        courseRepository.save(course);
-
-        System.out.println(course);
+    public Course addCourse(Course course) {
+        course.setCourseId(nextCourseId);
+        courseMap.put(nextCourseId, course);
+        nextCourseId++;
+        return course;
     }
 
-    public Long getCourseIdByName(String courseName) {
-
-
-        for (Course course : getAllCourses()) {
-            if (course.getCourseName().equals(courseName)) {
-                return course.getCourseId();
-            }
+    public Course updateCourse(int courseId, Course updatedCourse) {
+        if (courseMap.containsKey(courseId)) {
+            updatedCourse.setCourseId(courseId);
+            courseMap.put(courseId, updatedCourse);
+            return updatedCourse;
         }
-        return -1L;
+        return null;
     }
 
-
-
-
-    @Transactional
-    public void updateCourse(Long courseId, String imie ){
-        Course course = courseRepository.findById(courseId).orElseThrow(() ->
-                new IllegalStateException("Podane id: "+ courseId+ " nie istnieje."));
-
-        if(imie!= null && imie.length()> 0 && !Objects.equals(course.getCourseName(), imie)){
-            course.setCourseName(imie);
+    public boolean deleteCourse(int courseId) {
+        if (courseMap.containsKey(courseId)) {
+            courseMap.remove(courseId);
+            return true;
         }
-
-
-
+        return false;
     }
-
-
-    public void deleteCourse(Long courseId) {
-
-        boolean exists =courseRepository.existsById(courseId);
-        if(!exists){
-            throw new IllegalStateException("" +
-                    "To id: " +courseId+ " nie istnieje w bazie danych");
-        }
-        courseRepository.deleteById(courseId);
-    }
-
-
-
 }

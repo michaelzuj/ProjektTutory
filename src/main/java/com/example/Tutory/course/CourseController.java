@@ -13,10 +13,10 @@ import jakarta.servlet.http.HttpServlet;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/course")
+@RequestMapping("/courses")
 public class CourseController extends HttpServlet {
 
-
+    @Autowired
     private final CourseService courseService;
     private static final long serialVerionUID = 1L;
 
@@ -27,11 +27,11 @@ public class CourseController extends HttpServlet {
 
     @GetMapping
     public List<Course> getCourses() {
-        return courseService.getAllCourses();
+        return courseService.getCourses();
     }
 
     @PostMapping(consumes = "application/json;charset=UTF-8")
-    public void registerNewCourse(@RequestBody Course course) {
+    public void registerNewStudent(@RequestBody Course course) {
         courseService.addCourse(course);
     }
 
@@ -39,17 +39,5 @@ public class CourseController extends HttpServlet {
     public void deleteCourse(@PathVariable("courseId") Long courseId) {
         courseService.deleteCourse(courseId);
     }
-    @PutMapping(path = "{courseId}")
-    public void updateCourse(@PathVariable("courseId") Long studentId,
-                              @RequestParam(required = false) String course_name)
-
-    {
-        courseService.updateCourse(studentId,course_name);
-    }
-
-
-
 
 }
-
-

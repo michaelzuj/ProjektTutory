@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/v1/student")
 public class StudentController  extends HttpServlet{
-
     private final StudentService studentService;
     private static final long serialVerionUID = 1L;
     @Autowired

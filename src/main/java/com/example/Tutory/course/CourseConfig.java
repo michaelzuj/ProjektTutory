@@ -11,25 +11,25 @@ import java.util.List;
 public class CourseConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner3(CourseRepository courseRepository) {
+    CommandLineRunner commandLineRunner3(CourseRepository repository2) {
         return args -> {
-            Course nowykurs = new Course(
+            Course nowy1 = new Course(
                     1L,
-                    "Fizyka",
+                    "Systemy mobilne",
                     "Kowalski@gmail.com",
                     2
 
 
                     );
-            Course nowykurs2 = new Course(
+            Course nowy2 = new Course(
                     2L,
-                    "Economy",
+                    "Electronic economy",
                     "Kowalski@gmail.com",
                     2
 
 
             );
-            Course nowykurs3 = new Course(
+            Course nowy3 = new Course(
                     3L,
                     "Matematyka",
                     "Kowalski@gmail.com",
@@ -38,7 +38,7 @@ public class CourseConfig {
 
             );
 
-            courseRepository.saveAll(List.of(nowykurs,nowykurs2,nowykurs3));
+            repository2.saveAll(List.of(nowy1,nowy2,nowy3));
 
 
 
