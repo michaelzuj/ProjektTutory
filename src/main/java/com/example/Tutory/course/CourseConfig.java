@@ -1,6 +1,5 @@
 package com.example.Tutory.course;
 
-import com.example.Tutory.student.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,14 +18,12 @@ public class CourseConfig {
                     "Kowalski@gmail.com",
                     2
 
-
-                    );
+            );
             Course nowy2 = new Course(
                     2L,
                     "Electronic economy",
                     "Kowalski@gmail.com",
                     2
-
 
             );
             Course nowy3 = new Course(
@@ -35,12 +32,9 @@ public class CourseConfig {
                     "Kowalski@gmail.com",
                     2
 
-
             );
 
-            repository2.saveAll(List.of(nowy1,nowy2,nowy3));
-
-
+            repository2.saveAll(List.of(nowy1, nowy2, nowy3));
 
         };
 

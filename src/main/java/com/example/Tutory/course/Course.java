@@ -1,6 +1,8 @@
 package com.example.Tutory.course;
 
 import com.example.Tutory.student.Student;
+import com.example.Tutory.teacher.Teacher;
+
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +20,9 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     private List<Student> students;
 
+    @ManyToMany(mappedBy = "courses")
+    private List<Teacher> teacher;
+
     public List<Student> getStudents() {
         return students;
     }
@@ -26,7 +31,6 @@ public class Course {
         this.students = students;
     }
 
-
     public Course(Long courseId, String courseName, String instructor, int numberOfStudents, List<Student> students) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -34,6 +38,7 @@ public class Course {
         this.numberOfStudents = numberOfStudents;
         this.students = students;
     }
+
     public Course(Long courseId, String courseName, String instructor, int numberOfStudents) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -48,7 +53,6 @@ public class Course {
     public List<Student> getCourseStudents() {
         return students;
     }
-
 
     public String getCourseName() {
         return courseName;

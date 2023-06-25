@@ -1,12 +1,7 @@
 package com.example.Tutory.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.Tutory.student.Student;
-import com.example.Tutory.student.StudentService;
 
 import jakarta.servlet.http.HttpServlet;
 
@@ -18,7 +13,7 @@ public class CourseController extends HttpServlet {
 
     @Autowired
     private final CourseService courseService;
-    private static final long serialVerionUID = 1L;
+    private static final long serialVerionUID = 2L;
 
     @Autowired
     public CourseController(CourseService courseService) {
@@ -31,7 +26,7 @@ public class CourseController extends HttpServlet {
     }
 
     @PostMapping(consumes = "application/json;charset=UTF-8")
-    public void registerNewStudent(@RequestBody Course course) {
+    public void addCourse(@RequestBody Course course) {
         courseService.addCourse(course);
     }
 

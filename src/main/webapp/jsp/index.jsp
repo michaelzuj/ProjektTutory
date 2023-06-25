@@ -109,7 +109,16 @@
 			<div class="col-md-12">
 				<ul class="list-group" style="list-style-type:none; padding:0; margin:0;">
 					<li class="list-group-item">
-						<a href="#">Course 1</a>
+						<a href="#">Course 1 </a><button id="myButton">+</button>
+						<div id="myPopup" class="popup">
+        					<div class="popup-content">
+            					<h1>
+                  					Course 1
+              					</h1>
+            					<p>description</p>
+								<button >Go to Course</button><button id="closePopup">x</button>
+        					</div>
+    					</div>
 					</li>
 					<li class="list-group-item">
 						<a href="#">Course 2</a>
@@ -121,6 +130,24 @@
 			</div>
 		</div>
 	</div>
+	
+	
+
+
+
+	<script>
+        myButton.addEventListener("click", function () {
+            myPopup.classList.add("show");
+        });
+        closePopup.addEventListener("click", function () {
+            myPopup.classList.remove("show");
+        });
+        window.addEventListener("click", function (event) {
+            if (event.target == myPopup) {
+                myPopup.classList.remove("show");
+            }
+        });
+    </script>
 </section>
 
 <script
