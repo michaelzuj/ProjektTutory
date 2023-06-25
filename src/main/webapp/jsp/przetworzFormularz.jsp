@@ -5,11 +5,7 @@
 <%@ page import="java.sql.DriverManager" %>
 
 <%@ page language="java" import="java.util.*"%>
-<%
-	if (session.getAttribute("name")==null){
-		response.sendRedirect("login.jsp");
-	}
-%>
+
 
 
 <!DOCTYPE html>
@@ -31,20 +27,13 @@
 			rel="stylesheet" type="text/css" />
 	<link href="../css/index-styles.css" rel="stylesheet" />
 
-	<script type="text/javascript">
-		function change()
-		{
-			var answer = document.getElementById('selc').value;
-			document.getElementById('textvalue').value=answer;
-		}
-	</script>
 </head>
 <body id="page-top">
 <nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
 	<div class="container">
-		<a class="navbar-brand" href="#page-top">Tutory</a>
+		<a class="navbar-brand" href="/login">Tutory</a>
 		<button
 				class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-bs-toggle="collapse"
@@ -68,7 +57,7 @@
 <header class="masthead bg-primary text-white text-center">
 	<div class="container d-flex align-items-center flex-column">
 
-		<h1 class="masthead-subheading text-uppercase mb-0" style="font-size: 80px">Welcome!</h1>
+		<h1 class="masthead-subheading text-uppercase mb-0" style="font-size: 80px">My courses</h1>
 		<div class="divider-custom divider-light">
 			<div class="divider-custom-line"></div>
 			<div class="divider-custom-icon">
@@ -83,36 +72,19 @@
 
 <section class="masthead bg-white text-darkblue text-center" id="portfolio">
 
-	<h1 class="masthead-subheading text-uppercase mb-0">All courses available:</h1>
 	<div >
-		<ul class="navbar-nav ms-auto">
-			<li class="nav-item mx-0 mx-lg-1">
-				<form action="/przetworzFormularz" method="post">
+		<ul class="masthead-subheading text-uppercase mb-0">
 
-				<select name="ActionSelect" onChange="change()" id="selc" style="font-size: 25px">
+			<li class="list-group-item">
 				<%Iterator itr;%>
-				<% List data= (List)request.getAttribute("data");
+				<% List data= (List)request.getAttribute("data2");
 					for (itr=data.iterator(); itr.hasNext(); )
 					{
-						String value=(String)itr.next();
+						Long value=(Long)itr.next();
 				%>
 				<option value=<%=value%>><%=value%></option>
 				<%}%>
-			</select>
-					<input type="hidden" name="textvalue" id="textvalue" >
-					<input type="hidden" name="idStudenta2" id="idStudenta2" value="<%= session.getAttribute("idStudenta2") %>">
-					<button class="button-27" type="submit">Add</button>
-
-
-			</form>
 			</li>
-
-
-
-			<br>
-
-
-			<li class="nav-item mx-0 mx-lg-1">
 			<br>
 		</ul>
 	</div>
@@ -121,9 +93,14 @@
 <%--	<div class="container mt-5">--%>
 <%--		<div class="row" class="masthead-subheading">--%>
 <%--			<div class="col-md-12">--%>
-<%--				<ul class="navbar-nav ms-auto">--%>
-<%--					<li class="nav-item mx-0 mx-lg-1"><a--%>
-<%--							class="nav-link py-3 px-0 px-lg-3 rounded" href="/przetworzFormularz">Go to my courses</a></li>--%>
+<%--				<ul class="list-group" style="list-style-type:none; padding:0; margin:0;">--%>
+<%--					<li class="list-group-item">--%>
+
+<%--					</li>--%>
+
+<%--					<li class="list-group-item">--%>
+<%--						<a href="#">Course 3</a>--%>
+<%--					</li>--%>
 <%--				</ul>--%>
 <%--			</div>--%>
 <%--		</div>--%>
