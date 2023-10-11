@@ -109,11 +109,11 @@ public class Student {
         this.haslo = haslo;
     }
     public String getStanowisko() {
-        return haslo;
+        return stanowisko;
     }
 
-    public void setStanowisko(String haslo) {
-        this.haslo = haslo;
+    public void setStanowisko(String stanowisko) {
+        this.stanowisko = stanowisko;
     }
 
     @Override
